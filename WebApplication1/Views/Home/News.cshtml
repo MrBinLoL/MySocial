@@ -1,0 +1,54 @@
+﻿@page
+@model WebApplication1.Views.Home.Index1Model
+@{
+}
+<div class="chat-body">
+    <ul class="list-unstyled" id="gg2"> @*data-bind="foreach: chatMessages"*@
+        @*<li>
+            <div class="chat-message d-flex" data-bind="css: $data.isMine() === true ? 'ismine' : 'isother'">
+                <div class="left-side">
+                    <img src="#" class="message-avatar" data-bind="attr: { src: '/images/icons/' + $data.avatar() }" />
+                </div>
+                <div class="message-content d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                        <span class="author" data-bind="text:$data.from"></span>
+                        <span class="timestamp">
+                            <i class="far fa-clock"></i>
+                            <span data-bind="text:$data.timestamp"></span>
+                        </span>
+                    </div>
+                    <span class="content" data-bind="html:$data.content"></span>
+                </div>
+            </div>
+        </li>*@
+        @foreach (var b in ViewBag.News)
+        {
+            <li>
+                <div>
+                    <div>
+                        <p>@b.UserName</p>
+                    </div>
+                    <div>
+                        <p>@b.Text</p>
+                        <p>@b.Like</p>
+                        <p>@b.dateTime</p>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+<div class="chat-input">
+    <input id="chat-message" type="text" value="" data-bind="value:message, valueUpdate: 'afterkeydown', event: { keypress: onEnter }" placeholder="What's on your mind?" />
+    <div class="actions d-flex align-items-center">
+        @*<i class="fas fa-paper-plane" id="btn-send-message" data-bind="click: sendNewMessage"></i>*@
+        <button data-bind="click: sendNewMessage">123</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/knockout/knockout-latest.min.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+}
